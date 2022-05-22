@@ -1,0 +1,11 @@
+image: ghcr.io/capuanob/dateutils-fuzz:latest
+project: dateutils
+target: dateutils-fuzz
+tests:
+  - file://corpus
+
+cmds:
+  - cmd: /dadd +4d
+    afl: true
+  - cmd: /ddiff 2012-01-01
+    afl: true
