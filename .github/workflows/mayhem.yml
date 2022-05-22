@@ -8,7 +8,13 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  MAYHEM_FILE: Mayhem/dadd.mayhemfile
+  DADD_MAYHEM_FILE: Mayhem/dadd.mayhemfile
+  DDIFF_MAYHEM_FILE: Mayhem/ddiff.mayhemfile
+  DROUND_MAYHEM_FILE: Mayhem/dround.mayhemfile
+  STRPTIME_MAYHEM_FILE: Mayhem/strptime.mayhemfile
+  DCONV_MAYHEM_FILE: Mayhem/dconv.mayhemfile
+  DGREP_MAYHEM_FILE: Mayhem/dgrep.mayhemfile
+  DSORT_MAYHEM_FILE: Mayhem/dsort.mayhemfile
 
 jobs:
   build:
@@ -47,11 +53,53 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Start analysis
+      - name: Start analysis (DADD)
         uses: ForAllSecure/mcode-action@v1
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
-          args: --image ${{ steps.meta.outputs.tags }} --duration 300
+          args: --file ${{ env.DADD_MAYHEM_FILE }} --image ${{ steps.meta.outputs.tags }} --duration 300
+          sarif-output: sarif
+
+      - name: Start analysis (DDIFF)
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --file ${{ env.DDIFF_MAYHEM_FILE }} --image ${{ steps.meta.outputs.tags }} --duration 300
+          sarif-output: sarif
+
+      - name: Start analysis (DROUND)
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --file ${{ env.DROUND_MAYHEM_FILE }} --image ${{ steps.meta.outputs.tags }} --duration 300
+          sarif-output: sarif
+
+      - name: Start analysis (STRPTIME)
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --file ${{ env.STRPTIME_MAYHEM_FILE }} --image ${{ steps.meta.outputs.tags }} --duration 300
+          sarif-output: sarif
+
+      - name: Start analysis (DCONV)
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --file ${{ env.DCONV_MAYHEM_FILE }} --image ${{ steps.meta.outputs.tags }} --duration 300
+          sarif-output: sarif
+
+      - name: Start analysis (DGREP)
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --file ${{ env.DGREP_MAYHEM_FILE }} --image ${{ steps.meta.outputs.tags }} --duration 300
+          sarif-output: sarif
+
+      - name: Start analysis (DSORT)
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --file ${{ env.DSORT_MAYHEM_FILE }} --image ${{ steps.meta.outputs.tags }} --duration 300
           sarif-output: sarif
 
       - name: Upload SARIF file(s)
