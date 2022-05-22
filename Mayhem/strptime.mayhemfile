@@ -1,0 +1,9 @@
+image: ghcr.io/capuanob/dateutils-fuzz:latest
+project: dateutils
+target: strptime-fuzz
+tests:
+  - file://corpus/strptime
+
+cmds:
+  - cmd: /strptime -i "%a, %b-%d/%Y"
+    afl: true

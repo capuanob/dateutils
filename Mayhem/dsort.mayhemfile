@@ -1,0 +1,9 @@
+image: ghcr.io/capuanob/dateutils-fuzz:latest
+project: dateutils
+target: dsort-fuzz
+tests:
+  - file://corpus/sort
+
+cmds:
+  - cmd: /dsort
+    afl: true

@@ -1,0 +1,9 @@
+image: ghcr.io/capuanob/dateutils-fuzz:latest
+project: dateutils
+target: dconv-fuzz
+tests:
+  - file://corpus/dt
+
+cmds:
+  - cmd: /dconv --from-zone "America/Chicago" --zone "Asia/Tokyo"
+    afl: true

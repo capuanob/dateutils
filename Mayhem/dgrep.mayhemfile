@@ -1,0 +1,9 @@
+image: ghcr.io/capuanob/dateutils-fuzz:latest
+project: dateutils
+target: dgrep-fuzz
+tests:
+  - file://corpus/grep
+
+cmds:
+  - cmd: /dgrep '<2012-03-01'
+    afl: true

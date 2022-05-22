@@ -1,0 +1,9 @@
+image: ghcr.io/capuanob/dateutils-fuzz:latest
+project: dateutils
+target: dround-fuzz
+tests:
+  - file://corpus/vanilla
+
+cmds:
+  - cmd: /dround -- -Sep +31d
+    afl: true

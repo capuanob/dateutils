@@ -22,6 +22,14 @@ FROM fuzzers/aflplusplus:3.12c
 # Explicitly copy test binaries
 COPY --from=builder /dateutils/src/dadd /
 COPY --from=builder /dateutils/src/ddiff /
+COPY --from=builder /dateutils/src/dgrep /
+COPY --from=builder /dateutils/src/dconv /
+COPY --from=builder /dateutils/src/dround /
+COPY --from=builder /dateutils/src/dseq /
+COPY --from=builder /dateutils/src/dzone /
+COPY --from=builder /dateutils/src/dsort /
+COPY --from=builder /dateutils/src/dtest /
+COPY --from=builder /dateutils/src/strptime /
 
 ## Debugging corpus
 RUN mkdir /tests && echo "2012-01-01" > /tests/seed
